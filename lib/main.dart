@@ -50,11 +50,9 @@ class MyApp extends StatelessWidget {
 class MyThemes {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xff1E1F25),
-    colorScheme: const ColorScheme.dark(),
   );
 
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: const Color(0xffffffff),
-    colorScheme: const ColorScheme.light(),
   );
 }

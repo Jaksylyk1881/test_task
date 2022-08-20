@@ -19,6 +19,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final translator = GoogleTranslator();
   @override
   void initState() {
     BlocProvider.of<MainPageCubit>(context).getText();
@@ -65,6 +66,9 @@ class _MainPageState extends State<MainPage> {
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w800,
                               fontSize: 35,
+                              color: themeProvider.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -141,12 +145,17 @@ class _MainPageState extends State<MainPage> {
                                   text: text.text ?? "",
                                   onWordTapped: (word, index) async {
                                     context.loaderOverlay.show();
-                                    final a = await word.translate(to: 'ru');
+                                    final a = await translator.translate(
+                                      word,
+                                      from: "en",
+                                      to: 'ru',
+                                    );
                                     context.loaderOverlay.hide();
                                     tappedWord = a.text;
                                     setState(() {});
                                   },
-                                  style: const TextStyle(fontSize: 16),
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Color(0xff575767)),
                                 )
                               ],
                             ),
